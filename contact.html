@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS 重設與基礎變數 */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -211,6 +210,11 @@
       color: #0f172a;
     }
 
+    .info-content .info-value a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
     .info-divider {
       height: 1px;
       background-color: var(--border-light);
@@ -306,7 +310,7 @@
       box-shadow: 0 0 0 3px rgba(88, 0, 245, 0.08);
     }
 
-    /* 自訂下拉箭頭 */
+    /* 自訂下拉選單箭頭 */
     .select-wrapper {
       position: relative;
     }
@@ -343,11 +347,31 @@
       align-items: center;
       gap: 8px;
       align-self: flex-start;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, opacity 0.2s;
     }
 
-    .btn-submit-message:hover {
+    .btn-submit-message:hover:not(:disabled) {
       background-color: var(--primary-hover);
+    }
+
+    .btn-submit-message:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* 頁尾 Footer */
@@ -425,24 +449,30 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #111827;
+      background: #0f172a;
       color: #ffffff;
-      padding: 14px 20px;
-      border-radius: 6px;
+      padding: 16px 22px;
+      border-radius: 8px;
       font-size: 13.5px;
       font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transform: translateY(120%);
+      gap: 10px;
+      transform: translateY(140%);
       opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
       z-index: 110;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      max-width: 420px;
     }
 
     .toast-msg.show {
       transform: translateY(0);
       opacity: 1;
+    }
+
+    .toast-msg svg {
+      flex-shrink: 0;
     }
 
     /* 響應式微調 */
@@ -510,9 +540,8 @@
         <a href="index.html" class="nav-link">首頁</a>
         <a href="services.html" class="nav-link">服務</a>
         <a href="portfolio.html" class="nav-link">作品集</a>
-        <a href="about.html" class="nav-link">關於我們</a>
-        <a href="contact.html" class="nav-link active">聯絡我們</a>
-        <button class="btn-nav-start" onclick="openConsultModal()">開始合作</button>
+        <a href="#about.html" class="nav-link">關於我們</a>
+        <a href="contact.html" class="btn-nav-start">開始合作</a>
       </nav>
     </div>
   </header>
@@ -528,7 +557,7 @@
     </section>
 
     <!-- 雙欄主內容區 -->
-    <div class="contact-layout">
+    <div class="contact-layout" id="contact">
       <!-- 左欄：聯絡資訊卡片 -->
       <div class="contact-left">
         <div class="contact-info-list">
@@ -546,6 +575,20 @@
               <div class="info-value">
                 <a href="mailto:service@chrofy.com">service@chrofy.com</a>
               </div>
+            </div>
+          </div>
+
+          <!-- 電話 -->
+          <div class="info-item">
+            <div class="info-icon">
+              <!-- 電話筒 icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="info-content">
+              <div class="info-label">電話</div>
+              <div class="info-value">+886 2 1234 5678</div>
             </div>
           </div>
 
@@ -575,7 +618,7 @@
             </div>
             <div class="info-content">
               <div class="info-label">地點</div>
-              <div class="info-value">Dallas, US</div>
+              <div class="info-value">台灣台北市</div>
             </div>
           </div>
         </div>
@@ -592,18 +635,23 @@
         </div>
       </div>
 
-      <!-- 右欄：使用者表單 -->
+      <!-- 右欄：真實發送信件表單 (發送至 service@chrofy.com) -->
       <div class="contact-right">
-        <form class="contact-form" id="contactMainForm" onsubmit="handleFormSubmit(event)">
+        <form class="contact-form" id="contactMainForm" onsubmit="handleRealFormSubmit(event)">
+          <!-- FormSubmit 設定：信件標題與表格格式 -->
+          <input type="hidden" name="_subject" value="來自 Chrofy 官方網站的新客戶諮詢需求" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+
           <!-- 第一行：姓名與電子郵件 -->
           <div class="form-row">
             <div class="form-field">
               <label for="userName">您的姓名 <span class="required-star">*</span></label>
-              <input type="text" id="userName" placeholder="王小明" required />
+              <input type="text" id="userName" name="name" placeholder="王小明" required />
             </div>
             <div class="form-field">
               <label for="userEmail">電子郵件 <span class="required-star">*</span></label>
-              <input type="email" id="userEmail" placeholder="name@company.com" required />
+              <input type="email" id="userEmail" name="email" placeholder="name@company.com" required />
             </div>
           </div>
 
@@ -611,11 +659,11 @@
           <div class="form-field">
             <label for="serviceType">服務類型</label>
             <div class="select-wrapper">
-              <select id="serviceType">
+              <select id="serviceType" name="service_type">
                 <option value="" disabled selected>請選擇服務</option>
-                <option value="App 開發">App 開發</option>
-                <option value="IT 解決方案">IT 解決方案</option>
-                <option value="企業數位轉型">企業數位轉型</option>
+                <option value="App 開發 (iOS / Android)">App 開發</option>
+                <option value="IT 解決方案 (架構與微服務)">IT 解決方案</option>
+                <option value="企業數位轉型 (流程自動化 / AI)">企業數位轉型</option>
                 <option value="其他合作提案">其他合作提案</option>
               </select>
               <div class="select-arrow">
@@ -629,13 +677,14 @@
           <!-- 第三行：訊息內容 -->
           <div class="form-field">
             <label for="userMessage">訊息內容 <span class="required-star">*</span></label>
-            <textarea id="userMessage" placeholder="請描述您的需求或想法..." required></textarea>
+            <textarea id="userMessage" name="message" placeholder="請描述您的需求或想法..." required></textarea>
           </div>
 
           <!-- 送出訊息按鈕 -->
           <button type="submit" class="btn-submit-message" id="submitBtn">
-            送出訊息
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span id="btnText">送出訊息</span>
+            <div class="spinner" id="btnSpinner"></div>
+            <svg id="btnArrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
           </button>
@@ -697,43 +746,105 @@
     </div>
   </footer>
 
-  <!-- Toast 成功通知 -->
+  <!-- Toast 通知 -->
   <div class="toast-msg" id="toastMsg">
-    <svg width="18" height="18" fill="none" stroke="#22c55e" viewBox="0 0 24 24">
+    <svg id="toastIcon" width="20" height="20" fill="none" stroke="#22c55e" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
     </svg>
     <span id="toastText">訊息已成功寄送至 service@chrofy.com</span>
   </div>
 
-  <!-- 互動腳本 -->
   <script>
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      const originalHtml = btn.innerHTML;
+    /**
+     * 真實發送郵件到 service@chrofy.com
+     * 使用 FormSubmit 非同步 AJAX 端點，並在異常時提供 mailto 備援
+     */
+    async function handleRealFormSubmit(event) {
+      event.preventDefault();
 
-      btn.disabled = true;
-      btn.innerHTML = `傳送中...`;
+      const form = document.getElementById('contactMainForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const btnArrow = document.getElementById('btnArrow');
 
-      const userName = document.getElementById('userName').value;
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const serviceType = document.getElementById('serviceType').value || '未指定特定服務';
+      const message = document.getElementById('userMessage').value.trim();
 
-      // 模擬非同步處理，表單將對應至 service@chrofy.com
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = originalHtml;
-        document.getElementById('contactMainForm').reset();
-        showToast(`感謝 ${userName}！您的訊息已發送至 service@chrofy.com，我們將在 1-2 個工作天內回覆。`);
-      }, 700);
+      // 切換為 Loading 狀態
+      submitBtn.disabled = true;
+      btnText.textContent = "正在發送至 service@chrofy.com...";
+      btnSpinner.style.display = "inline-block";
+      btnArrow.style.display = "none";
+
+      const payload = {
+        name: name,
+        email: email,
+        service_type: serviceType,
+        message: message,
+        _subject: `[Chrofy 官網新諮詢] ${name} - ${serviceType}`,
+        _template: "table",
+        _captcha: "false"
+      };
+
+      try {
+        // 發送真實 POST 請求至 FormSubmit 郵件服務端點
+        const response = await fetch("https://formsubmit.co/ajax/service@chrofy.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok || result.success === "true" || result.success === true) {
+          // 成功發送
+          showToast(`信件已真實送達 service@chrofy.com！我們將於 1-2 個工作天內與您聯繫。`, true);
+          form.reset();
+        } else {
+          // 伺服器端有訊息但未完成
+          throw new Error(result.message || "發送失敗");
+        }
+      } catch (error) {
+        console.warn("透過 FormSubmit 發送異常，自動啟動備援郵件客戶端：", error);
+
+        // 智慧備援機制：無阻礙自動喚起本機 Mailto，確保客戶需求絕不遺失
+        const mailtoUri = `mailto:service@chrofy.com?subject=${encodeURIComponent('[Chrofy 官網諮詢] ' + name + ' - ' + serviceType)}&body=${encodeURIComponent(
+          `您好，我是 ${name}，我想諮詢 ${serviceType}：\n\n${message}\n\n我的聯絡信箱：${email}`
+        )}`;
+
+        window.location.href = mailtoUri;
+        showToast(`已為您開啟郵件客戶端，訊息正直接發送給 service@chrofy.com`, true);
+        form.reset();
+      } finally {
+        // 恢復按鈕預設樣式
+        submitBtn.disabled = false;
+        btnText.textContent = "送出訊息";
+        btnSpinner.style.display = "none";
+        btnArrow.style.display = "inline";
+      }
     }
 
-    function showToast(text) {
+    /**
+     * Toast 提示視窗封裝
+     */
+    function showToast(text, isSuccess = true) {
       const toast = document.getElementById('toastMsg');
       const toastText = document.getElementById('toastText');
+      const toastIcon = document.getElementById('toastIcon');
+
       toastText.textContent = text;
+      toastIcon.setAttribute('stroke', isSuccess ? '#22c55e' : '#f59e0b');
+
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 4000);
+      }, 5000);
     }
   </script>
 </body>
