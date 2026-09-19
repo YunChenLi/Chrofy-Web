@@ -1,1151 +1,628 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chrofy - 服務 | 從想法到落地，全程陪跑</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>服務 | Chrofy - 從想法到落地，全程陪跑</title>
   
-  <!-- Google Fonts: Inter & Noto Sans TC -->
+  <!-- Inter & Noto Sans TC font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#5200FF',
+              dark: '#4500d6',
+              light: '#f4f0ff',
+              surface: '#faf9fe',
+              purple: '#5d0df8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* CSS Reset & 基礎變數 */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --primary: #5800f5;
-      --primary-hover: #4600c7;
-      --primary-light: #f5f2ff;
-      --primary-border: #dcd0ff;
-      --text-main: #111827;
-      --text-sub: #4b5563;
-      --text-muted: #6b7280;
-      --border-color: #e5e7eb;
-      --border-dark: #d1d5db;
-      --bg-page: #ffffff;
-      --bg-tag: #f9fafb;
-      --font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.6;
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      font-family: inherit;
-      border: none;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* 頂部導航 Header */
-    header {
-      width: 100%;
-      background-color: #ffffff;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid transparent;
-    }
-
-    .nav-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #0f172a;
-    }
-
-    .logo-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      color: #000;
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
-    .nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: #4b5563;
-      transition: color 0.2s ease;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: #111827;
-      font-weight: 600;
-    }
-
-    .btn-start {
-      background-color: var(--primary);
-      color: #ffffff;
-      padding: 9px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: background-color 0.2s, transform 0.1s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-start:hover {
-      background-color: var(--primary-hover);
-    }
-
-    /* Hero Section */
-    .hero-section {
-      padding: 48px 0 40px;
-    }
-
-    .badge-label {
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      display: inline-block;
-    }
-
-    .hero-title {
-      font-size: 42px;
-      font-weight: 900;
-      letter-spacing: -0.8px;
-      color: #0f172a;
-      margin-bottom: 16px;
-      line-height: 1.25;
-    }
-
-    .hero-desc {
-      font-size: 15px;
-      color: var(--text-sub);
-      max-width: 620px;
-      line-height: 1.75;
-    }
-
-    /* 3 欄服務選單 Tab */
-    .service-tabs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 40px 0 32px;
-    }
-
-    .tab-card {
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 22px 24px;
-      background: #ffffff;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .tab-card .tab-num {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--primary);
-      display: block;
-      margin-bottom: 6px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .tab-card .tab-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .tab-card.active {
-      border-color: var(--primary);
-      background-color: var(--primary-light);
-    }
-
-    .tab-card:hover:not(.active) {
-      border-color: var(--border-dark);
-      background-color: #fafafa;
-    }
-
-    /* 服務主內容區 (雙欄) */
-    .service-detail-section {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 72px;
-    }
-
-    .service-left .sub-path {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
-
-    .service-left .main-heading {
-      font-size: 28px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 16px;
-      line-height: 1.35;
-    }
-
-    .service-left .main-description {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
-
-    /* 勾選清單 */
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #374151;
-    }
-
-    .check-icon {
-      width: 16px;
-      height: 16px;
-      border: 1.5px solid #a855f7;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #a855f7;
-    }
-
-    .check-icon svg {
-      width: 10px;
-      height: 10px;
-      stroke-width: 2.5;
-    }
-
-    /* 服務產業 Tags */
-    .industry-wrapper .industry-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .industry-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .industry-tag {
-      font-size: 12px;
-      color: #4b5563;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 5px 12px;
-      border-radius: 4px;
-    }
-
-    /* 右側卡片群組 */
-    .service-right {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .metric-card {
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 40px 32px;
-      background: #ffffff;
-    }
-
-    .metric-card .stat-number {
-      font-size: 56px;
-      font-weight: 900;
-      color: var(--primary);
-      line-height: 1;
-      font-family: 'Inter', sans-serif;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-    }
-
-    .metric-card .stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .consult-info-card {
-      border: 1px solid var(--primary-border);
-      background-color: var(--primary-light);
-      border-radius: 4px;
-      padding: 24px 28px;
-    }
-
-    .consult-info-card p {
-      font-size: 13px;
-      color: #1f2937;
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-
-    .consult-info-card p strong {
-      color: #111827;
-      font-weight: 700;
-    }
-
-    .link-consult {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary);
-      transition: gap 0.2s ease;
-      cursor: pointer;
-    }
-
-    .link-consult:hover {
-      gap: 9px;
-    }
-
-    /* 分隔線 */
-    .divider {
-      height: 1px;
-      background-color: #f1f3f5;
-      width: 100%;
-      margin: 20px 0 60px;
-    }
-
-    /* 合作流程 Section */
-    .workflow-section {
-      margin-bottom: 72px;
-    }
-
-    .workflow-section .section-title {
-      font-size: 28px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-
-    .workflow-section .section-subtitle {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-    }
-
-    .workflow-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .workflow-card {
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 24px 22px 32px;
-      background: #ffffff;
-      min-height: 170px;
-    }
-
-    .workflow-card .step-num {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--primary);
-      font-family: 'Inter', sans-serif;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .workflow-card .step-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 12px;
-    }
-
-    .workflow-card .step-desc {
-      font-size: 12.5px;
-      color: #6b7280;
-      line-height: 1.65;
-    }
-
-    /* 底部 CTA 橫幅 */
-    .cta-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 36px 0 72px;
-    }
-
-    .cta-content h2 {
-      font-size: 32px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 8px;
-    }
-
-    .cta-content p {
-      font-size: 14px;
-      color: var(--text-sub);
-    }
-
-    .btn-cta-large {
-      background-color: var(--primary);
-      color: #ffffff;
-      padding: 13px 26px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: background-color 0.2s;
-    }
-
-    .btn-cta-large:hover {
-      background-color: var(--primary-hover);
-    }
-
-    .btn-cta-large svg {
-      width: 14px;
-      height: 14px;
-      stroke-width: 2.5;
-    }
-
-    /* 頁尾 Footer */
-    footer {
-      border-top: 1px solid #f1f3f5;
-      padding: 56px 0 28px;
-      background: #ffffff;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 48px;
-    }
-
-    .footer-about .brand-logo {
-      margin-bottom: 16px;
-    }
-
-    .footer-about p {
-      font-size: 12.5px;
-      color: #6b7280;
-      line-height: 1.7;
-    }
-
-    .footer-col-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: #9ca3af;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: #4b5563;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #f3f4f6;
-      padding-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #9ca3af;
-    }
-
-    .footer-legal-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-legal-links a {
-      color: #9ca3af;
-      transition: color 0.2s;
-    }
-
-    .footer-legal-links a:hover {
-      color: #4b5563;
-    }
-
-    /* 彈出預約諮詢視窗 (Modal) */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.45);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 16px;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 480px;
-      border-radius: 8px;
-      padding: 32px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      color: #9ca3af;
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
-    }
-
-    .modal-close:hover {
-      background-color: #f3f4f6;
-      color: #111827;
-    }
-
-    .modal-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 6px;
-    }
-
-    .modal-desc {
-      font-size: 13px;
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font-size: 13.5px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(88, 0, 245, 0.1);
-    }
-
-    .btn-submit-modal {
-      width: 100%;
-      background: var(--primary);
-      color: #ffffff;
-      padding: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 6px;
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-submit-modal:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Toast 通知 */
-    .toast-msg {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #111827;
-      color: #ffffff;
-      padding: 14px 20px;
-      border-radius: 6px;
-      font-size: 13.5px;
-      font-weight: 500;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transform: translateY(120%);
-      opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      z-index: 110;
-    }
-
-    .toast-msg.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* RWD 響應式微調 */
-    @media (max-width: 900px) {
-      .service-tabs-grid {
-        grid-template-columns: 1fr;
-      }
-      .service-detail-section {
-        grid-template-columns: 1fr;
-      }
-      .workflow-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .cta-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .workflow-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-title {
-        font-size: 32px;
-      }
-      .nav-menu {
-        display: none;
-      }
+    .custom-ring {
+      box-shadow: 0 0 0 1.5px #5200FF;
     }
   </style>
 </head>
-<body>
+<body class="bg-white text-gray-900 selection:bg-brand selection:text-white min-h-screen flex flex-col justify-between">
 
-  <!-- 頂部導航 -->
+  <!-- Top Navigation Bar -->
+  <header class="w-full border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      
       <!-- Brand Logo -->
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2.5">
-        <svg class="w-6 h-6 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"/>
-          <line x1="12" y1="2" x2="12" y2="6"/>
-          <line x1="12" y1="18" x2="12" y2="22"/>
-          <line x1="2" y1="12" x2="6" y2="12"/>
-          <line x1="18" y1="12" x2="22" y2="12"/>
-          <circle cx="12" cy="2" r="1"/>
-          <circle cx="12" cy="22" r="1"/>
-          <circle cx="2" cy="12" r="1"/>
-          <circle cx="22" cy="12" r="1"/>
+      <a href="#" class="flex items-center gap-2 group">
+        <!-- Chrofy logo glyph: crosshair/node icon -->
+        <svg class="w-7 h-7 text-black transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <line x1="12" y1="2" x2="12" y2="7"></line>
+          <line x1="12" y1="17" x2="12" y2="22"></line>
+          <line x1="2" y1="12" x2="7" y2="12"></line>
+          <line x1="17" y1="12" x2="22" y2="12"></line>
         </svg>
-        <span class="text-2xl font-bold tracking-tight text-slate-900">Chrofy</span>
-   
+        <span class="text-2xl font-bold tracking-tight text-gray-950 font-sans">Chrofy</span>
       </a>
 
-      <nav class="nav-menu">
-        <a href="#services" class="nav-link active">服務</a>
-        <a href="#portfolio" class="nav-link">作品集</a>
-        <a href="#about" class="nav-link">關於我們</a>
-        <a href="mailto:service@chrofy.com" class="nav-link">聯絡我們</a>
-        <button class="btn-start" onclick="openConsultModal()">開始合作</button>
-      </nav>
+      <!-- Navigation Links & Action Button -->
+      <div class="flex items-center gap-8">
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+          <a href="#" class="text-black font-semibold hover:text-brand transition-colors">服務</a>
+          <a href="#" class="hover:text-black transition-colors">作品集</a>
+          <a href="#" class="hover:text-black transition-colors">關於我們</a>
+          <a href="#" class="hover:text-black transition-colors">聯絡我們</a>
+        </nav>
+
+        <a href="#contact-section" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-[#5800f5] hover:bg-[#4800cc] transition-colors shadow-sm active:scale-95">
+          開始合作
+        </a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- 主標題區塊 -->
-    <section class="hero-section">
-      <span class="badge-label">服務</span>
-      <h1 class="hero-title">從想法到落地，全程陪跑</h1>
-      <p class="hero-desc">
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 w-full">
+    <!-- Hero Header -->
+    <section class="max-w-3xl mb-14">
+      <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5] mb-4">服務</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-950 leading-tight mb-5">
+        從想法到落地，全程陪跑
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
         我們提供端到端的技術服務，無論是打造全新產品、整合現有系統，還是推動組織數位轉型，Chrofy 都是您最可靠的夥伴。
       </p>
     </section>
 
-    <!-- 服務選單 Tabs -->
-    <section class="service-tabs-grid">
-      <!-- Tab 01 -->
-      <div class="tab-card active" onclick="switchService(0)">
-        <span class="tab-num">01</span>
-        <div class="tab-name">App 開發</div>
-      </div>
-      <!-- Tab 02 -->
-      <div class="tab-card" onclick="switchService(1)">
-        <span class="tab-num">02</span>
-        <div class="tab-name">IT 解決方案</div>
-      </div>
-      <!-- Tab 03 -->
-      <div class="tab-card" onclick="switchService(2)">
-        <span class="tab-num">03</span>
-        <div class="tab-name">企業數位轉型</div>
-      </div>
-    </section>
+    <!-- Service Tabs Navigation -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+      
+      <!-- Tab 01: App 開發 (Default Active) -->
+      <button onclick="switchTab('app')" id="tab-btn-app" class="tab-button text-left p-6 rounded-lg border-2 border-[#5800f5] bg-white transition-all duration-200 focus:outline-none">
+        <span class="block text-xs font-semibold text-[#5800f5] mb-2 tab-number">01</span>
+        <span class="block text-lg font-bold text-gray-900 tab-title">App 開發</span>
+      </button>
 
-    <!-- 服務詳情主體 (動態更新) -->
-    <section class="service-detail-section" id="serviceDetail">
-      <!-- 左欄內容 -->
-      <div class="service-left">
-        <div class="sub-path" id="serviceCategoryPath">01 / App 開發</div>
-        <h2 class="main-heading" id="serviceHeadline">跨平台行動應用，精準觸達每位用戶</h2>
-        <p class="main-description" id="serviceParagraph">
-          從 UX 設計到上架維運，我們以 React Native 與原生技術打造高效能 iOS/Android 應用，確保流暢體驗與長期可擴展性。
-        </p>
+      <!-- Tab 02: IT 解決方案 -->
+      <button onclick="switchTab('it')" id="tab-btn-it" class="tab-button text-left p-6 rounded-lg border border-gray-200 hover:border-gray-300 bg-white transition-all duration-200 focus:outline-none">
+        <span class="block text-xs font-semibold text-gray-400 mb-2 tab-number">02</span>
+        <span class="block text-lg font-bold text-gray-800 tab-title">IT 解決方案</span>
+      </button>
 
-        <!-- 條列特色 -->
-        <ul class="feature-list" id="serviceFeatureList">
-          <li class="feature-item">
-            <div class="check-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span>iOS & Android 跨平台開發</span>
-          </li>
-          <li class="feature-item">
-            <div class="check-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span>UX/UI 設計與原型驗證</span>
-          </li>
-          <li class="feature-item">
-            <div class="check-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span>API 整合與後端架構</span>
-          </li>
-          <li class="feature-item">
-            <div class="check-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span>App Store / Google Play 上架</span>
-          </li>
-          <li class="feature-item">
-            <div class="check-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span>持續維運與版本迭代</span>
-          </li>
-        </ul>
+      <!-- Tab 03: 企業數位轉型 -->
+      <button onclick="switchTab('transform')" id="tab-btn-transform" class="tab-button text-left p-6 rounded-lg border border-gray-200 hover:border-gray-300 bg-white transition-all duration-200 focus:outline-none">
+        <span class="block text-xs font-semibold text-gray-400 mb-2 tab-number">03</span>
+        <span class="block text-lg font-bold text-gray-800 tab-title">企業數位轉型</span>
+      </button>
 
-        <!-- 服務產業 -->
-        <div class="industry-wrapper">
-          <div class="industry-title">服務產業</div>
-          <div class="industry-tags" id="serviceIndustryTags">
-            <span class="industry-tag">零售電商</span>
-            <span class="industry-tag">醫療健康</span>
-            <span class="industry-tag">教育科技</span>
-            <span class="industry-tag">金融服務</span>
+    </div>
+
+    <!-- Service Content Area -->
+    <div id="service-content-container" class="transition-opacity duration-200">
+      
+      <!-- Content: 01 App 開發 (Default View) -->
+      <div id="content-app" class="service-panel grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <!-- Left details -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs font-medium text-gray-500 tracking-wide">
+            <span class="text-[#5800f5] font-semibold">01</span> / <span class="text-gray-700">App 開發</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight">
+            跨平台行動應用，精準觸達每位用戶
+          </h2>
+
+          <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+            從 UX 設計到上架維運，我們以 React Native 與原生技術打造高效能 iOS/Android 應用，確保流暢體驗與長期可擴展性。
+          </p>
+
+          <!-- Feature bullet list with circular icons -->
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>iOS &amp; Android 跨平台開發</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>UX/UI 設計與原型驗證</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>API 整合與後端架構</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>App Store / Google Play 上架</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>持續維運與版本迭代</span>
+            </div>
+          </div>
+
+          <!-- Industries Tags -->
+          <div class="pt-4">
+            <span class="block text-xs text-gray-400 font-medium mb-3">服務產業</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">零售電商</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">醫療健康</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">教育科技</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">金融服務</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right statistic cards -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Metric Highlight Card -->
+          <div class="border border-gray-200 rounded-lg p-8 bg-white">
+            <div class="text-5xl sm:text-6xl font-black text-[#5800f5] tracking-tight mb-2">50+</div>
+            <div class="text-sm font-medium text-gray-500">已上架應用</div>
+          </div>
+
+          <!-- CTA Banner Card -->
+          <div class="border border-[#cbb3fc] rounded-lg p-6 bg-[#faf8ff] flex flex-col justify-between">
+            <p class="text-sm text-gray-800 font-medium leading-relaxed mb-4">
+              想了解更多關於 <strong class="text-gray-950 font-bold">App 開發</strong> 的細節？歡迎與我們預約免費諮詢。
+            </p>
+            <a href="#contact-section" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#5800f5] hover:text-[#4500d6] transition-colors group">
+              <span>立即諮詢</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- 右欄指標與諮詢卡片 -->
-      <div class="service-right">
-        <!-- 數據卡片 -->
-        <div class="metric-card">
-          <div class="stat-number" id="metricNumber">10+</div>
-          <div class="stat-label" id="metricLabel">已上架應用</div>
+      <!-- Content: 02 IT 解決方案 (Hidden by default) -->
+      <div id="content-it" class="service-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs font-medium text-gray-500 tracking-wide">
+            <span class="text-[#5800f5] font-semibold">02</span> / <span class="text-gray-700">IT 解決方案</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight">
+            高可用架構與雲端整合，賦能企業運作
+          </h2>
+
+          <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+            我們規劃高韌性、可彈性擴充的雲端基礎設施與客製化企業系統，協助企業無縫連接多元系統、降低維護成本。
+          </p>
+
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>AWS / GCP 雲端架構規劃與遷移</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>客製化 ERP / CRM 系統建構</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>微服務架構與 API Gateway 整合</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>資訊安全加固與法規合規支援</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>7x24 伺服器監控與災難復原演練</span>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <span class="block text-xs text-gray-400 font-medium mb-3">服務產業</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">製造工廠</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">跨國貿易</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">物流倉儲</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">專業諮詢</span>
+            </div>
+          </div>
         </div>
 
-        <!-- 預約諮詢提示卡 -->
-        <div class="consult-info-card">
-          <p id="consultPromptText">
-            想了解更多關於 <strong id="consultCurrentName">App 開發</strong> 的細節？歡迎與我們預約免費諮詢。
-          </p>
-          <a class="link-consult" onclick="openConsultModal()">
-            立即諮詢
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-            </svg>
-          </a>
+        <div class="lg:col-span-5 space-y-4">
+          <div class="border border-gray-200 rounded-lg p-8 bg-white">
+            <div class="text-5xl sm:text-6xl font-black text-[#5800f5] tracking-tight mb-2">99.9%</div>
+            <div class="text-sm font-medium text-gray-500">系統服務可用率保障</div>
+          </div>
+
+          <div class="border border-[#cbb3fc] rounded-lg p-6 bg-[#faf8ff] flex flex-col justify-between">
+            <p class="text-sm text-gray-800 font-medium leading-relaxed mb-4">
+              想了解更多關於 <strong class="text-gray-950 font-bold">IT 解決方案</strong> 的細節？歡迎與我們預約免費諮詢。
+            </p>
+            <a href="#contact-section" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#5800f5] hover:text-[#4500d6] transition-colors group">
+              <span>立即諮詢</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- 分隔線 -->
-    <div class="divider"></div>
+      <!-- Content: 03 企業數位轉型 (Hidden by default) -->
+      <div id="content-transform" class="service-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs font-medium text-gray-500 tracking-wide">
+            <span class="text-[#5800f5] font-semibold">03</span> / <span class="text-gray-700">企業數位轉型</span>
+          </div>
 
-    <!-- 合作流程區塊 -->
-    <section class="workflow-section">
-      <span class="badge-label">合作流程</span>
-      <h2 class="section-title">我們的合作流程</h2>
-      <p class="section-subtitle">清晰透明的四步驟，讓每個專案都有跡可循。</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight">
+            以數據為驅動，重塑數位時代的競爭力
+          </h2>
 
-      <div class="workflow-grid">
+          <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+            透過內部流程自動化、AI 整合與現代化工作流導入，幫助團隊跨越轉型瓶頸，激發全新商業價值。
+          </p>
+
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>業務流程數位化與自動化 (RPA)</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>生成式 AI 應用與工作流整合</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>商業智慧儀表板 (BI) 與數據洞察</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>組織敏捷工作法培訓與顧問</span>
+            </div>
+
+            <div class="flex items-center gap-3 text-gray-700 text-sm font-medium">
+              <span class="w-5 h-5 rounded-full border border-[#5800f5] text-[#5800f5] flex items-center justify-center text-[10px] shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </span>
+              <span>遺留舊系統 (Legacy) 現代化重構</span>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <span class="block text-xs text-gray-400 font-medium mb-3">服務產業</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">傳統製造業</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">連鎖餐飲</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">房產建築</span>
+              <span class="px-3 py-1.5 rounded text-xs font-medium text-gray-600 border border-gray-200 bg-white">公部門機構</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div class="border border-gray-200 rounded-lg p-8 bg-white">
+            <div class="text-5xl sm:text-6xl font-black text-[#5800f5] tracking-tight mb-2">3.5x</div>
+            <div class="text-sm font-medium text-gray-500">平均作業效率提升</div>
+          </div>
+
+          <div class="border border-[#cbb3fc] rounded-lg p-6 bg-[#faf8ff] flex flex-col justify-between">
+            <p class="text-sm text-gray-800 font-medium leading-relaxed mb-4">
+              想了解更多關於 <strong class="text-gray-950 font-bold">企業數位轉型</strong> 的細節？歡迎與我們預約免費諮詢。
+            </p>
+            <a href="#contact-section" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#5800f5] hover:text-[#4500d6] transition-colors group">
+              <span>立即諮詢</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider Line -->
+    <hr class="my-24 border-gray-200">
+
+    <!-- Process Section -->
+    <section class="mb-24">
+      <div class="mb-12">
+        <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5] mb-4">合作流程</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-950 tracking-tight mb-3">
+          我們的合作流程
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base">
+          清晰透明的四步驟，讓每個專案都有跡可循。
+        </p>
+      </div>
+
+      <!-- 4-Step Process Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
         <!-- Step 01 -->
-        <div class="workflow-card">
-          <span class="step-num">01</span>
-          <h3 class="step-title">需求探索</h3>
-          <p class="step-desc">深入了解您的業務目標、技術現況與使用者需求，確立專案範疇與成功指標。</p>
+        <div class="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between hover:border-gray-300 transition-colors">
+          <div>
+            <span class="block text-xs font-semibold text-[#5800f5] mb-3">01</span>
+            <h3 class="text-base font-bold text-gray-950 mb-3">需求探索</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              深入了解您的業務目標、技術現況與使用者需求，確立專案範疇與成功指標。
+            </p>
+          </div>
         </div>
 
         <!-- Step 02 -->
-        <div class="workflow-card">
-          <span class="step-num">02</span>
-          <h3 class="step-title">方案設計</h3>
-          <p class="step-desc">提交技術架構、UI 原型與專案計畫，確保雙方對交付物有一致的期望。</p>
+        <div class="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between hover:border-gray-300 transition-colors">
+          <div>
+            <span class="block text-xs font-semibold text-[#5800f5] mb-3">02</span>
+            <h3 class="text-base font-bold text-gray-950 mb-3">方案設計</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              提交技術架構、UI 原型與專案計畫，確保雙方對交付物有一致的期望。
+            </p>
+          </div>
         </div>
 
         <!-- Step 03 -->
-        <div class="workflow-card">
-          <span class="step-num">03</span>
-          <h3 class="step-title">敏捷開發</h3>
-          <p class="step-desc">以兩週為一個 Sprint，持續交付可測試的功能，並根據回饋快速調整。</p>
+        <div class="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between hover:border-gray-300 transition-colors">
+          <div>
+            <span class="block text-xs font-semibold text-[#5800f5] mb-3">03</span>
+            <h3 class="text-base font-bold text-gray-950 mb-3">敏捷開發</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              以兩週為一個 Sprint，持續交付可測試的功能，並根據回饋快速調整。
+            </p>
+          </div>
         </div>
 
         <!-- Step 04 -->
-        <div class="workflow-card">
-          <span class="step-num">04</span>
-          <h3 class="step-title">上線維運</h3>
-          <p class="step-desc">協助部署上線、監控系統健康狀態，並提供長期維護與功能擴充支援。</p>
+        <div class="border border-gray-200 rounded-lg p-6 bg-white flex flex-col justify-between hover:border-gray-300 transition-colors">
+          <div>
+            <span class="block text-xs font-semibold text-[#5800f5] mb-3">04</span>
+            <h3 class="text-base font-bold text-gray-950 mb-3">上線維運</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              協助部署上線、監控系統健康狀態，並提供長期維護與功能擴充支援。
+            </p>
+          </div>
         </div>
+
       </div>
     </section>
 
-    <!-- 分隔線 -->
-    <div class="divider"></div>
+    <!-- Divider Line -->
+    <hr class="my-24 border-gray-200">
 
-    <!-- 底部 CTA 橫幅 -->
-    <section class="cta-banner">
-      <div class="cta-content">
-        <h2>找到適合您的服務了嗎？</h2>
-        <p>讓我們安排一次免費諮詢，了解您的需求並提供量身建議。</p>
+    <!-- CTA Section -->
+    <section id="contact-section" class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-6">
+      <div class="max-w-xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-950 tracking-tight mb-3">
+          找到適合您的服務了嗎？
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base">
+          讓我們安排一次免費諮詢，了解您的需求並提供量身建議。
+        </p>
       </div>
-      <button class="btn-cta-large" onclick="openConsultModal()">
-        預約免費諮詢
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-        </svg>
+
+      <button onclick="handleConsultationModal()" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-white bg-[#5800f5] hover:bg-[#4800cc] transition-all shadow-sm active:scale-95 shrink-0">
+        <span>預約免費諮詢</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </section>
   </main>
 
-  <!-- 頁尾 Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-about">
-          <a href="#" class="brand-logo">
-            <span class="logo-icon">·|·</span> Chrofy
-          </a>
-          <p>創新想法，落地實踐。<br>專業 IT 解決方案，提升企業效率。</p>
+  <!-- Footer -->
+  <footer class="w-full border-t border-gray-100 bg-[#fafafa] pt-16 pb-12">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Top Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16">
+        <!-- Brand Info -->
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <line x1="12" y1="2" x2="12" y2="7"></line>
+              <line x1="12" y1="17" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="7" y2="12"></line>
+              <line x1="17" y1="12" x2="22" y2="12"></line>
+            </svg>
+            <span class="text-xl font-bold tracking-tight text-gray-950">Chrofy</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed max-w-sm">
+            創新想法，落地實踐。<br>
+            專業 IT 解決方案，提升企業效率。
+          </p>
         </div>
 
-        <div>
-          <h4 class="footer-col-title">服務</h4>
-          <ul class="footer-links">
-            <li><a href="javascript:void(0)" onclick="switchService(0)">App 開發</a></li>
-            <li><a href="javascript:void(0)" onclick="switchService(1)">IT 解決方案</a></li>
-            <li><a href="javascript:void(0)" onclick="switchService(2)">企業數位轉型</a></li>
+        <!-- Links Col 1: 服務 -->
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">服務</h4>
+          <ul class="space-y-3 text-xs font-medium text-gray-600">
+            <li><a href="#" onclick="switchTab('app'); return false;" class="hover:text-black transition-colors">App 開發</a></li>
+            <li><a href="#" onclick="switchTab('it'); return false;" class="hover:text-black transition-colors">IT 解決方案</a></li>
+            <li><a href="#" onclick="switchTab('transform'); return false;" class="hover:text-black transition-colors">企業數位轉型</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 class="footer-col-title">公司</h4>
-          <ul class="footer-links">
-            <li><a href="#about">關於我們</a></li>
-            <li><a href="#portfolio">作品集</a></li>
-            <li><a href="mailto:service@chrofy.com">聯絡我們</a></li>
+        <!-- Links Col 2: 公司 -->
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">公司</h4>
+          <ul class="space-y-3 text-xs font-medium text-gray-600">
+            <li><a href="#" class="hover:text-black transition-colors">關於我們</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">作品集</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">聯絡我們</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 Chrofy. 保留所有權利。</div>
-        <div class="footer-legal-links">
-          <a href="#">隱私政策</a>
-          <a href="#">服務條款</a>
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-200/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <div>
+          &copy; 2026 Chrofy. 保留所有權利。
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-gray-900 transition-colors">隱私政策</a>
+          <a href="#" class="hover:text-gray-900 transition-colors">服務條款</a>
         </div>
       </div>
+
     </div>
   </footer>
 
-  <!-- 預約免費諮詢彈窗 -->
-  <div class="modal-overlay" id="consultModal" onclick="handleBackdropClick(event)">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeConsultModal()">✕</button>
-      <h3 class="modal-title">預約免費諮詢</h3>
-      <p class="modal-desc">需求信件將直接寄送至 <strong>service@chrofy.com</strong></p>
-
-      <form id="consultForm" onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label>您的姓名 *</label>
-          <input type="text" id="senderName" placeholder="例如：林先生 / Tiffany" required>
+  <!-- Modal: 預約免費諮詢 (無 alert() 實現) -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-gray-100 transform transition-all">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-gray-900">預約免費諮詢</h3>
+        <button onclick="closeConsultationModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-md">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-gray-600 mb-5 leading-relaxed">
+        感謝您對 Chrofy 的關注！請填寫以下資訊，我們的技術顧問將於 24 小時內與您聯繫。
+      </p>
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">您的姓名</label>
+          <input type="text" required placeholder="王小明" class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] transition-colors">
         </div>
-
-        <div class="form-group">
-          <label>聯絡信箱 *</label>
-          <input type="email" id="senderEmail" placeholder="yourname@company.com" required>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">電子信箱</label>
+          <input type="email" required placeholder="contact@example.com" class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] transition-colors">
         </div>
-
-        <div class="form-group">
-          <label>感興趣的服務項目</label>
-          <select id="selectedService">
-            <option value="App 開發">App 開發</option>
-            <option value="IT 解決方案">IT 解決方案</option>
-            <option value="企業數位轉型">企業數位轉型</option>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">感興趣的服務</label>
+          <select class="w-full text-sm px-3 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] bg-white text-gray-700">
+            <option value="app">App 開發</option>
+            <option value="it">IT 解決方案</option>
+            <option value="transform">企業數位轉型</option>
           </select>
         </div>
-
-        <div class="form-group">
-          <label>專案需求簡述</label>
-          <textarea id="senderMsg" rows="3" placeholder="請簡述您的專案想法或預計達成的時程..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit-modal" id="submitBtn">
-          立即發送需求
+        <button type="submit" class="w-full mt-2 py-3 rounded-lg text-sm font-semibold text-white bg-[#5800f5] hover:bg-[#4800cc] transition-colors shadow-sm">
+          確認送出
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Toast 訊息提示 -->
-  <div class="toast-msg" id="toastMsg">
-    <svg width="18" height="18" fill="none" stroke="#22c55e" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-    </svg>
-    <span id="toastText">需求已成功發送至 service@chrofy.com</span>
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white text-sm px-5 py-3 rounded-lg shadow-xl translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+    <span id="toast-message">表單已送出，我們將盡快聯繫您！</span>
   </div>
 
-  <!-- 互動邏輯 -->
   <script>
-    // 服務資料庫
-    const servicesData = [
-      {
-        path: "01 / App 開發",
-        name: "App 開發",
-        headline: "跨平台行動應用，精準觸達每位用戶",
-        desc: "從 UX 設計到上架維運，我們以 React Native 與原生技術打造高效能 iOS/Android 應用，確保流暢體驗與長期可擴展性。",
-        features: [
-          "iOS & Android 跨平台開發",
-          "UX/UI 設計與原型驗證",
-          "API 整合與後端架構",
-          "App Store / Google Play 上架",
-          "持續維運與版本迭代"
-        ],
-        industries: ["零售電商", "醫療健康", "教育科技", "金融服務"],
-        statNum: "50+",
-        statLabel: "已上架應用"
-      },
-      {
-        path: "02 / IT 解決方案",
-        name: "IT 解決方案",
-        headline: "客製化架構設計，賦能業務高效運作",
-        desc: "針對中大型企業打造的高彈性微服務系統、雲端基礎架構建置與資料庫優化，確保高併發穩定性與企業級資安防護。",
-        features: [
-          "微服務架構與雲端遷移 (AWS/GCP/Azure)",
-          "高並發與高可用性系統規劃",
-          "企業 ERP / CRM 系統客製整合",
-          "CI/CD 自動化部署流程建置",
-          "24/7 監控預警與災難復原方案"
-        ],
-        industries: ["智慧製造", "物聯網應用", "供應鏈管理", "金融科技"],
-        statNum: "99.9%",
-        statLabel: "系統可用性保證"
-      },
-      {
-        path: "03 / 企業數位轉型",
-        name: "企業數位轉型",
-        headline: "擁抱數據與 AI，加速驅動組織革新",
-        desc: "評估企業現行流程瓶頸，導入自動化工作流、生成式 AI 工具與數據決策看板，實現營運降本增效與創新業務成長。",
-        features: [
-          "數位成熟度評估與轉型藍圖規劃",
-          "業務流程自動化 (RPA) 與系統串接",
-          "生成式 AI 與專屬企業知識庫落地",
-          "BI 商業智慧數據儀表板建構",
-          "全員數位工具導入與團隊賦能培訓"
-        ],
-        industries: ["跨國貿易", "傳統製造", "專業顧問", "連鎖餐飲"],
-        statNum: "40%+",
-        statLabel: "平均作業效率提升"
-      }
-    ];
+    // 初始化 Lucide 圖標
+    lucide.createIcons();
 
-    let currentActiveIndex = 0;
+    // 服務分頁切換邏輯
+    function switchTab(serviceId) {
+      const tabs = ['app', 'it', 'transform'];
+      
+      tabs.forEach(tab => {
+        const btn = document.getElementById(`tab-btn-${tab}`);
+        const content = document.getElementById(`content-${tab}`);
+        const numSpan = btn.querySelector('.tab-number');
+        const titleSpan = btn.querySelector('.tab-title');
 
-    // 切換服務卡片
-    function switchService(index) {
-      currentActiveIndex = index;
-      const data = servicesData[index];
-
-      // 切換 Tab 樣式
-      const tabs = document.querySelectorAll('.tab-card');
-      tabs.forEach((tab, i) => {
-        if (i === index) {
-          tab.classList.add('active');
+        if (tab === serviceId) {
+          // 啟用樣式 (紫色 2px 邊框，紫色編號)
+          btn.className = "tab-button text-left p-6 rounded-lg border-2 border-[#5800f5] bg-white transition-all duration-200 focus:outline-none";
+          numSpan.className = "block text-xs font-semibold text-[#5800f5] mb-2 tab-number";
+          titleSpan.className = "block text-lg font-bold text-gray-900 tab-title";
+          content.classList.remove('hidden');
         } else {
-          tab.classList.remove('active');
+          // 未啟用樣式 (灰邊框，灰編號)
+          btn.className = "tab-button text-left p-6 rounded-lg border border-gray-200 hover:border-gray-300 bg-white transition-all duration-200 focus:outline-none";
+          numSpan.className = "block text-xs font-semibold text-gray-400 mb-2 tab-number";
+          titleSpan.className = "block text-lg font-bold text-gray-800 tab-title";
+          content.classList.add('hidden');
         }
       });
 
-      // 更新左側文字
-      document.getElementById('serviceCategoryPath').textContent = data.path;
-      document.getElementById('serviceHeadline').textContent = data.headline;
-      document.getElementById('serviceParagraph').textContent = data.desc;
-
-      // 更新清單
-      const listEl = document.getElementById('serviceFeatureList');
-      listEl.innerHTML = data.features.map(item => `
-        <li class="feature-item">
-          <div class="check-icon">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-          </div>
-          <span>${item}</span>
-        </li>
-      `).join('');
-
-      // 更新標籤
-      const tagEl = document.getElementById('serviceIndustryTags');
-      tagEl.innerHTML = data.industries.map(tag => `<span class="industry-tag">${tag}</span>`).join('');
-
-      // 更新右側數據與諮詢文案
-      document.getElementById('metricNumber').textContent = data.statNum;
-      document.getElementById('metricLabel').textContent = data.statLabel;
-      document.getElementById('consultCurrentName').textContent = data.name;
-
-      // 同步預約表單的預設服務
-      document.getElementById('selectedService').value = data.name;
+      // 重新渲染可能的動態圖標
+      lucide.createIcons();
     }
 
-    // Modal 控制
-    function openConsultModal() {
-      document.getElementById('selectedService').value = servicesData[currentActiveIndex].name;
-      document.getElementById('consultModal').classList.add('active');
+    // 免費諮詢彈窗互動
+    function handleConsultationModal() {
+      const modal = document.getElementById('modal-backdrop');
+      modal.classList.remove('hidden');
     }
 
-    function closeConsultModal() {
-      document.getElementById('consultModal').classList.remove('active');
+    function closeConsultationModal() {
+      const modal = document.getElementById('modal-backdrop');
+      modal.classList.add('hidden');
     }
 
-    function handleBackdropClick(e) {
-      if (e.target.id === 'consultModal') {
-        closeConsultModal();
-      }
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
     }
 
-    // 表單寄信至 service@chrofy.com
     function handleFormSubmit(e) {
       e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      const originalText = btn.textContent;
-      
-      btn.disabled = true;
-      btn.textContent = "傳送中...";
-
-      const name = document.getElementById('senderName').value;
-      const email = document.getElementById('senderEmail').value;
-      const service = document.getElementById('selectedService').value;
-      const msg = document.getElementById('senderMsg').value;
-
-      // 模擬非同步寄送請求至後端伺服器 (收件人 service@chrofy.com)
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.textContent = originalText;
-        closeConsultModal();
-        document.getElementById('consultForm').reset();
-        
-        // 顯示成功 Toast
-        showToast(`感謝 ${name}！您的諮詢需求已傳送至 service@chrofy.com`);
-      }, 700);
+      closeConsultationModal();
+      showToast('預約資訊已送出，我們將盡快與您聯繫！');
     }
 
-    // Toast 顯示封裝
-    function showToast(text) {
-      const toast = document.getElementById('toastMsg');
-      const toastText = document.getElementById('toastText');
-      toastText.textContent = text;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
-    }
+    // 點擊背景關閉 Modal
+    document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeConsultationModal();
+      }
+    });
   </script>
 </body>
 </html>
