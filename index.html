@@ -1,382 +1,43 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chrofy - 實際成果，有目共睹</title>
-  <!-- 引入 Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- 引入 Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google 字體 Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chrofy · 數位解決方案</title>
   <style>
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-    }
+    :root{--purple:#4b25ff;--ink:#101019;--muted:#686894;--line:#d9d9e8;--bg:#fafaff;--lav:#f3f0ff;--max:1080px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif} a{text-decoration:none;color:inherit}
+    .notice{height:24px;background:#6548a8;color:#fff;text-align:center;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:22px}.notice a{text-decoration:underline}
+    header{height:60px;border-bottom:1px solid var(--line);background:rgba(250,250,255,.94);position:sticky;top:0;z-index:10}.nav{width:min(var(--max),calc(100% - 40px));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:8px;font-size:25px}.mark{width:26px;height:32px;position:relative;background:linear-gradient(90deg,transparent 48%,#18182a 49%,#18182a 52%,transparent 53%),linear-gradient(transparent 48%,#18182a 49%,#18182a 52%,transparent 53%)}.mark:after{content:"";position:absolute;inset:5px 1px;border:1px solid #77778e}.links{display:flex;gap:35px;align-items:center;font-size:14px;font-weight:700}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border:1px solid #cacadc;border-radius:3px;font-weight:800;background:#fff;cursor:pointer}.btn.primary{background:var(--purple);color:#fff;border-color:var(--purple)}
+    section{scroll-margin-top:70px}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}.hero{min-height:720px;display:grid;grid-template-columns:1.2fr .8fr;align-items:start;padding-top:125px}.eyebrow{color:var(--purple);font-size:13px;font-weight:900;letter-spacing:.04em}.hero h1{font-size:64px;line-height:1.08;margin:20px 0 26px;letter-spacing:-.04em}.hero h1 span{color:var(--purple)}.hero p{color:var(--muted);line-height:1.6;font-size:17px;max-width:500px}.actions{display:flex;gap:14px;margin-top:30px}.art{width:280px;height:280px;margin:55px auto 0;border:2px solid var(--purple);position:relative;background-image:radial-gradient(#d9d2ff 1px,transparent 1px);background-size:22px 22px}.art:before,.art:after{content:"";position:absolute;border:1px solid #d6d0ff}.art:before{inset:35px}.art:after{inset:75px 74px}.services{padding:60px 0 65px}.section-title{font-size:32px;margin:13px 0 48px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{min-height:200px;border:1px solid #c9c9db;padding:30px;border-radius:4px}.icon{width:34px;height:34px;border:1px solid #c9c9db;border-radius:4px;display:grid;place-items:center;color:var(--purple);margin-bottom:34px}.card small{float:right;color:#64649a}.card h3{margin:0 0 10px;font-size:20px}.card p,.case p,.reason p,.cta p{color:var(--muted);line-height:1.55}.reasons{background:var(--lav);padding:60px 0 75px}.reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:55px 110px}.stat strong{display:block;color:var(--purple);font-size:55px}.checks{padding-top:15px}.check{display:grid;grid-template-columns:24px 1fr;gap:12px;margin-bottom:26px}.dot{width:17px;height:17px;border:1px solid var(--purple);border-radius:50%;color:var(--purple);font-size:11px;display:grid;place-items:center}.check b{display:block;margin-bottom:6px}
+    .work{padding:70px 0 90px}.cases{display:grid;gap:15px}.case{border:1px solid #c9c9db;min-height:100px;padding:26px 30px;display:grid;grid-template-columns:145px 1fr 185px;align-items:center}.case .tag{color:var(--purple);font-size:13px}.case h3{margin:0 0 7px}.result{color:var(--purple);font-size:18px;font-weight:900;text-align:right}.cta{border-top:1px solid var(--line);margin-top:145px;padding:58px 0 20px;display:flex;justify-content:space-between;align-items:center}.cta h2{font-size:45px;margin:0 0 14px}.footer{padding:30px 0;color:#777;font-size:12px;text-align:center}
+    @media(max-width:800px){.notice{display:none}.links a:not(.primary){display:none}.hero{grid-template-columns:1fr;min-height:auto;padding:70px 0}.hero h1{font-size:48px}.art{margin-top:40px}.cards,.reason-grid{grid-template-columns:1fr}.case{grid-template-columns:1fr;gap:10px}.result{text-align:left}.cta{margin-top:70px;align-items:flex-start;gap:25px;flex-direction:column}.stats{gap:35px}.section-title{font-size:28px}}
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-purple-100 selection:text-purple-700">
+<body>
+  <div class="notice">You currently have a free site. Pick a plan to use premium features. <a href="plans.html">View Plans →</a></div>
+  <header><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Chrofy</a><div class="links"><a href="services.html">服務</a><a href="portfolio.html">作品集</a><a href="about.html">關於我們</a><a href="contact.html">聯絡我們</a><a class="btn primary" href="contact.html">開始合作</a></div></nav></header>
 
-  <!-- 頂部導覽列 (Navbar) -->
-  <header class="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur-md z-50">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2.5">
-        <svg class="w-6 h-6 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"/>
-          <line x1="12" y1="2" x2="12" y2="6"/>
-          <line x1="12" y1="18" x2="12" y2="22"/>
-          <line x1="2" y1="12" x2="6" y2="12"/>
-          <line x1="18" y1="12" x2="22" y2="12"/>
-          <circle cx="12" cy="2" r="1"/>
-          <circle cx="12" cy="22" r="1"/>
-          <circle cx="2" cy="12" r="1"/>
-          <circle cx="22" cy="12" r="1"/>
-        </svg>
-        <span class="text-2xl font-bold tracking-tight text-slate-900">Chrofy</span>
-      </a>
+  <main>
+    <section class="wrap hero" id="home"><div><div class="eyebrow">軟體設計 × 數位轉型</div><h1>創新想法<br><span>－ 落地實踐</span></h1><p>Chrofy 為中小企業與新創團隊打造專業 App 與 IT 解決方案，讓每一個想法都能精準落地。</p><div class="actions"><a class="btn primary" href="contact.html">開始合作 →</a><a class="btn" href="portfolio.html">查看案例</a></div></div><div class="art" aria-label="抽象系統架構圖"></div></section>
 
-      <!-- 導覽連結與按鈕 -->
-      <nav class="flex items-center gap-8 text-sm font-medium text-slate-600">
-        <a href="#" class="hover:text-slate-900 transition-colors">服務</a>
-        <a href="#" class="text-purple-600 font-semibold">作品集</a>
-        <a href="#" class="hover:text-slate-900 transition-colors">關於我們</a>
-        <a href="#" class="hover:text-slate-900 transition-colors">聯絡我們</a>
-        <a href="#" class="ml-2 bg-[#5500FF] hover:bg-[#4600d4] text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-sm">
-          開始合作
-        </a>
-      </nav>
-    </div>
-  </header>
+    <section class="services" id="services"><div class="wrap"><div class="eyebrow">我們的服務</div><h2 class="section-title">全方位技術支援</h2><div class="cards">
+      <a class="card" href="app-development.html"><small>Mobile & Web</small><div class="icon">▯</div><h3>App 開發</h3><p>iOS、Android 與跨平台應用，從概念到上架一站完成。</p></a>
+      <a class="card" href="it-solutions.html"><small>Infrastructure</small><div class="icon">▤</div><h3>IT 解決方案</h3><p>系統整合、雲端架構與資安規劃，強化企業核心競爭力。</p></a>
+      <a class="card" href="digital-transformation.html"><small>Transformation</small><div class="icon">⌁</div><h3>企業數位轉型</h3><p>流程自動化與數據驅動決策，讓企業效率全面升級。</p></a>
+    </div></div></section>
 
-  <!-- 主要內容區 -->
-  <main class="max-w-7xl mx-auto px-6 pt-16 pb-24">
-    <!-- 頁面標頭 -->
-    <div class="mb-12">
-      <span class="text-xs font-semibold text-purple-600 tracking-wider">作品集</span>
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mt-3 mb-4 tracking-tight">
-        實際成果，有目共睹
-      </h1>
-      <p class="text-slate-500 text-sm sm:text-base leading-relaxed max-w-2xl">
-        每個專案背後都是一段深度合作的旅程。以下是我們與客戶共同創造的部分成果。
-      </p>
-    </div>
+    <section class="reasons"><div class="wrap"><div class="eyebrow">為什麼選擇 CHROFY</div><h2 class="section-title">數字說話，成效為證</h2><div class="reason-grid"><div class="stats"><div class="stat"><strong>50+</strong><span>完成專案</span></div><div class="stat"><strong>98%</strong><span>客戶滿意度</span></div><div class="stat"><strong>5年</strong><span>產業經驗</span></div><div class="stat"><strong>30+</strong><span>合作企業</span></div></div><div class="checks"><div class="check"><span class="dot">✓</span><div><b>精準交付</b><p>嚴格的專案管理流程，確保每個里程碑準時達成。</p></div></div><div class="check"><span class="dot">✓</span><div><b>技術深度</b><p>持續投入 R&amp;D，掌握最新技術趨勢與最佳實踐。</p></div></div><div class="check"><span class="dot">✓</span><div><b>長期夥伴</b><p>不只是外包商，而是與您共同成長的技術夥伴。</p></div></div><div class="check"><span class="dot">✓</span><div><b>透明溝通</b><p>全程即時回報進度，讓您隨時掌握專案狀態。</p></div></div></div></div></div></section>
 
-    <!-- 標籤切換 (Filter Tabs) -->
-    <div class="flex items-center gap-2 mb-10 overflow-x-auto pb-2">
-      <button class="px-5 py-2 bg-[#5500FF] text-white text-xs sm:text-sm font-medium rounded-md shadow-sm">全部</button>
-      <button class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs sm:text-sm font-medium rounded-md transition-colors">行動應用</button>
-      <button class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs sm:text-sm font-medium rounded-md transition-colors">系統整合</button>
-      <button class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs sm:text-sm font-medium rounded-md transition-colors">數位轉型</button>
-    </div>
-
-    <!-- 案例卡片清單 (Case Studies Grid) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-      <!-- Card 1 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">行動應用</span>
-              <span class="text-xs text-slate-400">零售電商 · 2024</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">連鎖零售品牌</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">全通路購物 App</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            為連鎖零售品牌打造 iOS/Android 購物應用，整合 POS 系統、會員積點與個人化推薦引擎，實現線上線下無縫體驗。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">42%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">轉換率提升</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">2.8×</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">回購率成長</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">4.8★</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">App Store 評分</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">iOS</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Android</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">React Native</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">POS 整合</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">系統整合</span>
-              <span class="text-xs text-slate-400">製造業 · 2024</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">精密零件製造商</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">智慧工廠管理平台</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            導入 IoT 感測器網絡與即時數據儀表板，實現生產線全面可視化，並建立預測性維護模型降低非計畫停機。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">35%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">生產效率提升</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">60%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">停機時間減少</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">NT$8M</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">年度節省成本</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">IoT</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">即時儀表板</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Python</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">AWS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">數位轉型</span>
-              <span class="text-xs text-slate-400">金融服務 · 2023</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">中型金融機構</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">內部流程自動化</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            以 RPA 與 AI 工具取代重複性人工作業，涵蓋報告生成、合規審查與客戶資料核對，大幅降低人力成本並提升準確率。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">60%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">人工作業減少</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">99.7%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">資料準確率</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">3個月</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">專案導入期</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">RPA</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">AI 審查</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">流程自動化</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">行動應用</span>
-              <span class="text-xs text-slate-400">醫療健康 · 2023</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">連鎖診所集團</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">遠距醫療預約平台</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            建立跨平台視訊看診與預約管理系統，整合電子病歷、視訊問診與藥品配送，提升患者就醫便利性。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">120%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">預約量成長</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">85%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">病患滿意度</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">40%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">行政成本降低</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">WebRTC</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">HIPAA</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Vue.js</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">系統整合</span>
-              <span class="text-xs text-slate-400">物流倉儲 · 2023</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">第三方物流業者</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">倉儲管理系統升級</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            重構老舊 WMS 系統，導入條碼掃描、自動揀貨路徑優化與即時庫存追蹤，大幅縮短出貨作業時間。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">50%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">出貨時間縮短</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">99.2%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">庫存準確率</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">30%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">人力需求降低</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">WMS</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">條碼掃描</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Node.js</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">PostgreSQL</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow bg-white flex flex-col justify-between">
-        <div>
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-semibold text-purple-600 block">數位轉型</span>
-              <span class="text-xs text-slate-400">教育科技 · 2022</span>
-            </div>
-            <span class="text-xs bg-slate-50 border border-slate-200 text-slate-500 px-2.5 py-1 rounded">企業培訓機構</span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">線上學習管理平台</h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-8">
-            打造企業內訓 LMS 平台，支援影片課程、互動測驗、學習進度追蹤與結業證書自動發放，提升員工學習參與率。
-          </p>
-        </div>
-
-        <div>
-          <div class="grid grid-cols-3 gap-4 border-t border-slate-100 pt-6 pb-6 text-left">
-            <div>
-              <div class="text-xl font-bold text-purple-600">200%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">課程完成率提升</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">5,000+</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">活躍學員</div>
-            </div>
-            <div>
-              <div class="text-xl font-bold text-purple-600">70%</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">培訓成本降低</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
-            <i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-0.5"></i>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">LMS</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">影片串流</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">React</span>
-            <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">MySQL</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 分隔線 -->
-    <hr class="my-24 border-slate-200">
-
-    <!-- CTA 諮詢區塊 -->
-    <section class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-4">
-      <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          有類似的需求嗎？
-        </h2>
-        <p class="text-slate-500 mt-3 text-sm sm:text-base">
-          告訴我們您的挑戰，我們一起找出最佳解法。
-        </p>
-      </div>
-      <a href="#" class="inline-flex items-center justify-center gap-2 bg-[#5500FF] hover:bg-[#4600d4] text-white px-7 py-3.5 rounded-lg font-medium transition-all shadow-sm group">
-        <span>開始諮詢</span>
-        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
-      </a>
-    </section>
+    <section class="work" id="portfolio"><div class="wrap"><div class="eyebrow">精選案例</div><h2 class="section-title">實際成果，有目共睹</h2><div class="cases">
+      <a class="case" href="case-retail.html"><div class="tag">行動應用<br><span style="color:#777">零售電商</span></div><div><h3>全通路購物 App</h3><p>為連鎖零售品牌打造 iOS/Android 購物應用，整合 POS 與會員系統。</p></div><div class="result">轉換率提升 42%　→</div></a>
+      <a class="case" href="case-factory.html"><div class="tag">系統整合<br><span style="color:#777">製造業</span></div><div><h3>智慧工廠管理平台</h3><p>導入 IoT 感測器與即時數據儀表板，實現生產線全面可視化。</p></div><div class="result">生產效率提升 35%　→</div></a>
+      <a class="case" href="case-automation.html"><div class="tag">數位轉型<br><span style="color:#777">金融服務</span></div><div><h3>內部流程自動化</h3><p>以 RPA 與 AI 工具取代重複性作業，大幅降低人力成本。</p></div><div class="result">人工作業減少 60%　→</div></a>
+    </div><div class="cta"><div><h2>準備好了嗎？</h2><p>讓我們一起把您的想法變成現實。</p></div><a class="btn primary" href="contact.html">立即諮詢 →</a></div></div></section>
   </main>
-
-  <!-- 頁尾 (Footer) -->
-  <footer class="border-t border-slate-100 bg-white">
-    <div class="max-w-7xl mx-auto px-6 pt-16 pb-12">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
-        <!-- Logo 與簡介 -->
-        <div class="md:col-span-6 space-y-4">
-          <div class="flex items-center gap-2.5">
-            <svg class="w-5 h-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="3"/>
-              <line x1="12" y1="2" x2="12" y2="6"/>
-              <line x1="12" y1="18" x2="12" y2="22"/>
-              <line x1="2" y1="12" x2="6" y2="12"/>
-              <line x1="18" y1="12" x2="22" y2="12"/>
-              <circle cx="12" cy="2" r="1"/>
-              <circle cx="12" cy="22" r="1"/>
-              <circle cx="2" cy="12" r="1"/>
-              <circle cx="22" cy="12" r="1"/>
-            </svg>
-            <span class="text-xl font-bold tracking-tight text-slate-900">Chrofy</span>
-          </div>
-          <div class="text-xs text-slate-500 leading-relaxed space-y-1">
-            <p>創新想法，落地實踐。</p>
-            <p>專業 IT 解決方案，提升企業效率。</p>
-          </div>
-        </div>
-
-        <!-- 服務連結 -->
-        <div class="md:col-span-3">
-          <h4 class="text-xs font-medium text-slate-400 mb-4">服務</h4>
-          <ul class="space-y-3 text-xs font-medium text-slate-600">
-            <li><a href="#" class="hover:text-purple-600 transition-colors">App 開發</a></li>
-            <li><a href="#" class="hover:text-purple-600 transition-colors">IT 解決方案</a></li>
-            <li><a href="#" class="hover:text-purple-600 transition-colors">企業數位轉型</a></li>
-          </ul>
-        </div>
+  <div class="footer">© 2026 Chrofy. All rights reserved.</div>
+</body>
+</html>
 
         <!-- 公司連結 -->
         <div class="md:col-span-3">
