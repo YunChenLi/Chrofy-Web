@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於我們 | Chrofy - 技術為本，夥伴關係為魂</title>
+
+  <!-- Google Fonts: Inter & Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#5200FF',
+              hover: '#4500d6',
+              light: '#f7f4ff',
+              quote: '#f6f4ff',
+              border: '#e8e2fa'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Quote mark styling */
+    .quote-mark {
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 selection:bg-brand selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Top Navigation Bar -->
+  <header class="w-full border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <!-- Chrofy logo glyph: crosshair/node icon -->
+        <svg class="w-7 h-7 text-black transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <line x1="12" y1="2" x2="12" y2="7"></line>
+          <line x1="12" y1="17" x2="12" y2="22"></line>
+          <line x1="2" y1="12" x2="7" y2="12"></line>
+          <line x1="17" y1="12" x2="22" y2="12"></line>
+        </svg>
+        <span class="text-2xl font-bold tracking-tight text-gray-950 font-sans">Chrofy</span>
+      </a>
+
+      <!-- Navigation Links & CTA -->
+      <div class="flex items-center gap-8">
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+          <a href="#" class="hover:text-black transition-colors">服務</a>
+          <a href="#" class="hover:text-black transition-colors">作品集</a>
+          <a href="#" class="text-black font-semibold hover:text-brand transition-colors">關於我們</a>
+          <a href="#" class="hover:text-black transition-colors">聯絡我們</a>
+        </nav>
+
+        <button onclick="handleModalOpen()" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-[#5800f5] hover:bg-[#4800cc] transition-colors shadow-sm active:scale-95">
+          開始合作
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 w-full">
+    
+    <!-- Hero Section -->
+    <section class="max-w-3xl mb-16">
+      <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5] mb-4">關於我們</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-950 leading-tight mb-5">
+        技術為本，夥伴關係為魂
+      </h1>
+      <p class="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+        Chrofy 成立於 2026 年，是一家專注於 App 開發、IT 解決方案與企業數位轉型的科技公司。我們相信，真正好的技術應該讓人感覺不到它的存在——只留下業務成長的結果。
+      </p>
+    </section>
+
+    <!-- Stats Banner Section -->
+    <section class="py-8 border-y border-gray-200 mb-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-4xl sm:text-5xl font-black text-[#5800f5] tracking-tight mb-2">2026</div>
+          <div class="text-xs font-medium text-gray-500">成立年份</div>
+        </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-black text-[#5800f5] tracking-tight mb-2">10+</div>
+          <div class="text-xs font-medium text-gray-500">完成專案</div>
+        </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-black text-[#5800f5] tracking-tight mb-2">5+</div>
+          <div class="text-xs font-medium text-gray-500">長期客戶</div>
+        </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-black text-[#5800f5] tracking-tight mb-2">3+</div>
+          <div class="text-xs font-medium text-gray-500">團隊成員</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Story & Core Philosophy Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      
+      <!-- Left Column: Story -->
+      <div class="lg:col-span-6 space-y-6">
+        <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5]">品牌故事</span>
+        
+        <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+          <p>
+            Chrofy 的起點是兩位工程師在台北一間小辦公室裡的一個簡單信念：企業不應該因為技術門檻而錯失成長機會。
+          </p>
+          <p>
+            我們始終堅持一件事：每個專案都值得被認真對待。無論規模大小，我們投入的熱情和嚴謹程度從未改變。
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Mission Quote & 4 Value Cards -->
+      <div class="lg:col-span-6 space-y-4">
+        
+        <!-- Mission Quote Card -->
+        <div class="border border-[#d9ccfa] rounded-lg p-6 bg-[#f7f5ff]">
+          <div class="text-2xl font-black text-[#5800f5] mb-2 quote-mark">❞</div>
+          <h3 class="text-base font-bold text-gray-900 mb-2">
+            讓每一家企業都能以技術為槓桿，放大自身的競爭優勢。
+          </h3>
+          <span class="text-xs text-gray-400 font-medium">我們的使命</span>
+        </div>
+
+        <!-- 2x2 Values Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Value 1 -->
+          <div class="border border-gray-200 rounded-lg p-5 bg-white hover:border-gray-300 transition-colors">
+            <h4 class="text-sm font-bold text-gray-950 mb-2">誠信透明</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              我們說到做到。從報價到交付，沒有隱藏成本，沒有模糊承諾。
+            </p>
+          </div>
+
+          <!-- Value 2 -->
+          <div class="border border-gray-200 rounded-lg p-5 bg-white hover:border-gray-300 transition-colors">
+            <h4 class="text-sm font-bold text-gray-950 mb-2">結果導向</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              我們在乎的不是寫了幾行程式，而是它為您的業務帶來了什麼效果。
+            </p>
+          </div>
+
+          <!-- Value 3 -->
+          <div class="border border-gray-200 rounded-lg p-5 bg-white hover:border-gray-300 transition-colors">
+            <h4 class="text-sm font-bold text-gray-950 mb-2">持續精進</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              技術日新月異，我們持續學習、更新工具鏈，確保您的產品始終站在前端。
+            </p>
+          </div>
+
+          <!-- Value 4 -->
+          <div class="border border-gray-200 rounded-lg p-5 bg-white hover:border-gray-300 transition-colors">
+            <h4 class="text-sm font-bold text-gray-950 mb-2">深度合作</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              我們不是外包商，而是您的技術夥伴——深入理解您的業務，才能做成真正有用的建議。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Development Timeline Section -->
+    <section class="mb-24">
+      <div class="mb-10">
+        <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5] mb-3">發展歷程</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-950 tracking-tight">
+          一步一腳印
+        </h2>
+      </div>
+
+      <!-- Timeline Entries -->
+      <div class="space-y-7 max-w-2xl">
+        
+        <!-- 2026 -->
+        <div class="flex items-center gap-6 group">
+          <span class="text-sm font-bold text-[#5800f5] w-12 tracking-wide">2026</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-gray-900 shrink-0"></div>
+          <p class="text-xs sm:text-sm text-gray-800 font-medium">Chrofy 成立，完成首個企業 App 專案</p>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- Divider Line -->
+    <hr class="my-20 border-gray-200">
+
+    <!-- Core Team / Founders Section -->
+    <section class="mb-24">
+      <div class="mb-10">
+        <span class="inline-block text-xs font-semibold tracking-wider text-[#5800f5] mb-3">核心團隊</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-950 tracking-tight">
+          認識創辦人
+        </h2>
+      </div>
+
+      <!-- 2 Equal Width Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Founder 1: Tiffany -->
+        <div class="border border-gray-200 rounded-lg p-6 bg-white hover:border-gray-300 transition-all flex flex-col justify-between">
+          <div>
+            <!-- Square Avatar with Chinese initial -->
+            <div class="w-10 h-10 rounded-md bg-[#5800f5] text-white flex items-center justify-center font-bold text-sm mb-5 shadow-sm">
+              陳
+            </div>
+            <h3 class="text-base font-bold text-gray-950 mb-1">Tiffany Li</h3>
+            <div class="text-xs font-medium text-[#5800f5] mb-4">共同創辦人 / 技術長</div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              前外商工程師，專精雲端架構與分散式系統。帶領技術團隊確保每個產品的穩定性與可擴展性。
+            </p>
+          </div>
+        </div>
+
+        <!-- Founder 2: Jack -->
+        <div class="border border-gray-200 rounded-lg p-6 bg-white hover:border-gray-300 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-md bg-[#5800f5] text-white flex items-center justify-center font-bold text-sm mb-5 shadow-sm">
+              林
+            </div>
+            <h3 class="text-base font-bold text-gray-950 mb-1">Jack Yang</h3>
+            <div class="text-xs font-medium text-[#5800f5] mb-4">共同創辦人 / 營運長</div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              10 年供應鏈管理經驗，針對公司產品營運權方面評估。
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- Divider Line -->
+    <hr class="my-20 border-gray-200">
+
+    <!-- Bottom CTA Section -->
+    <section class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-4">
+      <div class="max-w-xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-950 tracking-tight mb-3">
+          想認識我們更多？
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base">
+          歡迎來信或預約一次輕鬆的線上會議，讓我們聊聊您的需求。
+        </p>
+      </div>
+
+      <button onclick="handleModalOpen()" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-white bg-[#5800f5] hover:bg-[#4800cc] transition-all shadow-sm active:scale-95 shrink-0 group">
+        <span>與我們聊聊</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5"></i>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-gray-100 bg-[#fafafa] pt-16 pb-12">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Top Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16">
+        <!-- Brand Info -->
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <line x1="12" y1="2" x2="12" y2="7"></line>
+              <line x1="12" y1="17" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="7" y2="12"></line>
+              <line x1="17" y1="12" x2="22" y2="12"></line>
+            </svg>
+            <span class="text-xl font-bold tracking-tight text-gray-950">Chrofy</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed max-w-sm">
+            創新想法，落地實踐。<br>
+            專業 IT 解決方案，提升企業效率。
+          </p>
+        </div>
+
+        <!-- Column: 服務 -->
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">服務</h4>
+          <ul class="space-y-3 text-xs font-medium text-gray-600">
+            <li><a href="#" class="hover:text-black transition-colors">App 開發</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">IT 解決方案</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">企業數位轉型</a></li>
+          </ul>
+        </div>
+
+        <!-- Column: 公司 -->
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">公司</h4>
+          <ul class="space-y-3 text-xs font-medium text-gray-600">
+            <li><a href="#" class="hover:text-black transition-colors">關於我們</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">作品集</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">聯絡我們</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-200/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <div>
+          &copy; 2026 Chrofy. 保留所有權利。
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-gray-900 transition-colors">隱私政策</a>
+          <a href="#" class="hover:text-gray-900 transition-colors">服務條款</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Contact Modal (Dialog) -->
+  <div id="contact-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-gray-100 transform transition-all">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-gray-900">預約與 Chrofy 聊聊</h3>
+        <button onclick="handleModalClose()" class="text-gray-400 hover:text-gray-600 p-1 rounded-md">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-gray-600 mb-5 leading-relaxed">
+        請填寫您的基本聯絡方式與感興趣的專案方向，創辦人或顧問將在 24 小時內與您親自連繫！
+      </p>
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">您的姓名</label>
+          <input type="text" required placeholder="王小明" class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] transition-colors">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">電子信箱</label>
+          <input type="email" required placeholder="contact@example.com" class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] transition-colors">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">想聊聊的主題</label>
+          <select class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#5800f5] bg-white text-gray-700">
+            <option value="app">App 開發合作</option>
+            <option value="it">IT 雲端與架構諮詢</option>
+            <option value="transform">企業數位轉型規劃</option>
+            <option value="other">其他業務合作 / 顧問交流</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full mt-2 py-3 rounded-lg text-sm font-semibold text-white bg-[#5800f5] hover:bg-[#4800cc] transition-colors shadow-sm">
+          確認送出預約
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-gray-950 text-white text-sm px-5 py-3 rounded-lg shadow-xl translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2.5">
+    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+    <span id="toast-message">預約已送出，我們將盡快與您聯繫！</span>
+  </div>
+
+  <script>
+    // 初始化 Lucide 圖標
+    lucide.createIcons();
+
+    // 彈窗開啟與關閉邏輯
+    function handleModalOpen() {
+      const modal = document.getElementById('contact-modal');
+      modal.classList.remove('hidden');
+    }
+
+    function handleModalClose() {
+      const modal = document.getElementById('contact-modal');
+      modal.classList.add('hidden');
+    }
+
+    // 彈出 Toast 提示
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    // 表單送出事件處理
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      handleModalClose();
+      showToast('感謝您的預約！我們將盡快與您聯繫。');
+    }
+
+    // 點擊背景遮罩關閉彈窗
+    document.getElementById('contact-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        handleModalClose();
+      }
+    });
+  </script>
+</body>
+</html>
