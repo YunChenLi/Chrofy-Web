@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chrofy - 作品集 | 實際成果，有目共睹</title>
-  
+
   <!-- Google Fonts: Inter & Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS 重設與基礎設定 */
+    /* CSS 重設與主題變數 */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -20,15 +20,14 @@
 
     :root {
       --primary: #5800f5;
-      --primary-hover: #4700c7;
-      --text-main: #111827;
+      --primary-hover: #4500c2;
+      --brand-navy: #050b1a;
+      --text-main: #0f172a;
       --text-sub: #4b5563;
       --text-muted: #6b7280;
-      --text-light: #9ca3af;
       --border-color: #e5e7eb;
       --border-light: #f1f3f5;
       --bg-page: #ffffff;
-      --bg-tag: #f9fafb;
       --font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
@@ -53,9 +52,33 @@
     }
 
     .container {
-      max-width: 1160px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    /* 品牌向量 Logo */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .brand-logo svg {
+      display: block;
+      width: 36px;
+      height: 36px;
+    }
+
+    .brand-logo .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      color: var(--brand-navy);
+      line-height: 1;
     }
 
     /* 頂部導航 Header */
@@ -72,23 +95,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 80px;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #0f172a;
-    }
-
-    .logo-icon {
-      font-size: 18px;
-      font-weight: 800;
-      color: #000000;
+      height: 84px;
     }
 
     .nav-menu {
@@ -109,7 +116,7 @@
       font-weight: 600;
     }
 
-    .btn-start {
+    .btn-nav-start {
       background-color: var(--primary);
       color: #ffffff;
       padding: 9px 20px;
@@ -122,19 +129,19 @@
       justify-content: center;
     }
 
-    .btn-start:hover {
+    .btn-nav-start:hover {
       background-color: var(--primary-hover);
     }
 
     /* Hero Section */
     .hero-section {
-      padding: 48px 0 36px;
+      padding: 44px 0 32px;
     }
 
     .badge-label {
       color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
       letter-spacing: 0.5px;
       margin-bottom: 14px;
       display: inline-block;
@@ -150,25 +157,25 @@
     }
 
     .hero-desc {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--text-sub);
-      max-width: 650px;
+      max-width: 680px;
       line-height: 1.75;
     }
 
-    /* 分類過濾按鈕 Tabs */
+    /* 分類切換按鈕 Tabs */
     .filter-group {
       display: flex;
       gap: 12px;
-      margin: 24px 0 36px;
+      margin: 28px 0 36px;
       flex-wrap: wrap;
     }
 
     .filter-btn {
-      padding: 8px 18px;
+      padding: 7px 18px;
       font-size: 13px;
       font-weight: 500;
-      border-radius: 6px;
+      border-radius: 5px;
       background-color: #ffffff;
       color: #4b5563;
       border: 1px solid var(--border-color);
@@ -191,20 +198,20 @@
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-bottom: 80px;
+      gap: 20px;
+      margin-bottom: 84px;
     }
 
     /* 專案卡片 */
     .project-card {
       border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 32px 32px 28px;
+      border-radius: 4px;
+      padding: 28px 28px 24px;
       background-color: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease;
     }
 
     .project-card:hover {
@@ -215,49 +222,50 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .card-category-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .card-category {
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11.5px;
+      font-weight: 700;
       color: var(--primary);
     }
 
     .card-industry-year {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
     }
 
     .card-client-tag {
-      font-size: 11.5px;
+      font-size: 11px;
       color: #4b5563;
       border: 1px solid var(--border-color);
       background-color: #ffffff;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 4px;
       white-space: nowrap;
     }
 
     .card-title {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
-      color: #111827;
-      margin-bottom: 12px;
+      color: #0f172a;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
     }
 
     .card-description {
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--text-sub);
       line-height: 1.7;
-      margin-bottom: 24px;
-      min-height: 46px;
+      margin-bottom: 22px;
+      min-height: 44px;
     }
 
     /* 數據成果列 (3 欄) */
@@ -265,10 +273,10 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 18px;
+      padding-bottom: 18px;
       border-top: 1px solid var(--border-light);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .metric-item .metric-value {
@@ -285,7 +293,7 @@
       color: var(--text-muted);
     }
 
-    /* 技術標籤列 */
+    /* 標籤列 */
     .card-tags {
       display: flex;
       align-items: center;
@@ -306,7 +314,7 @@
       color: #4b5563;
       background-color: #ffffff;
       border: 1px solid var(--border-color);
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 4px;
     }
 
@@ -315,7 +323,7 @@
       height: 1px;
       background-color: var(--border-light);
       width: 100%;
-      margin: 20px 0 56px;
+      margin: 20px 0 60px;
     }
 
     /* 底部 CTA 橫幅 */
@@ -323,7 +331,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 0 72px;
+      padding: 10px 0 76px;
     }
 
     .cta-content h2 {
@@ -341,24 +349,18 @@
     .btn-cta-large {
       background-color: var(--primary);
       color: #ffffff;
-      padding: 12px 24px;
+      padding: 13px 26px;
       font-size: 14px;
       font-weight: 600;
       border-radius: 6px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       transition: background-color 0.2s;
     }
 
     .btn-cta-large:hover {
       background-color: var(--primary-hover);
-    }
-
-    .btn-cta-large svg {
-      width: 14px;
-      height: 14px;
-      stroke-width: 2.5;
     }
 
     /* 頁尾 Footer */
@@ -375,14 +377,11 @@
       margin-bottom: 48px;
     }
 
-    .footer-about .brand-logo {
-      margin-bottom: 16px;
-    }
-
     .footer-about p {
       font-size: 12.5px;
       color: #6b7280;
       line-height: 1.7;
+      margin-top: 14px;
     }
 
     .footer-col-title {
@@ -434,7 +433,7 @@
       color: #4b5563;
     }
 
-    /* 諮詢彈窗 Modal */
+    /* 預約諮詢視窗 (Modal) */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -570,7 +569,7 @@
       opacity: 1;
     }
 
-    /* RWD 響應式微調 */
+    /* 響應式佈局 */
     @media (max-width: 900px) {
       .portfolio-grid {
         grid-template-columns: 1fr;
@@ -594,32 +593,57 @@
       }
       .card-metrics {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 12px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 頂部導航 -->
+  <!-- 頂部導航 Header -->
   <header>
     <div class="container nav-wrapper">
-      <a href="#" class="brand-logo">
-        <span class="logo-icon">·|·</span> Chrofy
+      <!-- 1:1 向量化 Chrofy 品牌 Logo -->
+      <a href="#" class="brand-logo" aria-label="Chrofy 首頁">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 垂直左側線條 -->
+          <line x1="28" y1="28" x2="28" y2="76" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+          <!-- 垂直右側線條 -->
+          <line x1="72" y1="22" x2="72" y2="70" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+          <!-- 水平上方線條 -->
+          <line x1="22" y1="36" x2="80" y2="36" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+          <!-- 水平下方線條 -->
+          <line x1="26" y1="68" x2="80" y2="68" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- 垂直軸線與端點空心圓 -->
+          <line x1="50" y1="18" x2="50" y2="82" stroke="#050b1a" stroke-width="3"/>
+          <circle cx="50" cy="14" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+          <circle cx="50" cy="86" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+
+          <!-- 水平軸線與端點空心圓 -->
+          <line x1="18" y1="52" x2="82" y2="52" stroke="#050b1a" stroke-width="3"/>
+          <circle cx="14" cy="52" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+
+          <!-- 中心實心交會點 -->
+          <circle cx="50" cy="52" r="5" fill="#050b1a"/>
+        </svg>
+        <span class="logo-text">Chrofy</span>
       </a>
 
+      <!-- 導航選單 -->
       <nav class="nav-menu">
-        <a href="#services" class="nav-link">服務</a>
-        <a href="#portfolio" class="nav-link active">作品集</a>
-        <a href="#about" class="nav-link">關於我們</a>
-        <a href="mailto:service@chrofy.com" class="nav-link">聯絡我們</a>
-        <button class="btn-start" onclick="openConsultModal()">開始合作</button>
+        <a href="index.html" class="nav-link">首頁</a>
+        <a href="services.html" class="nav-link">服務</a>
+        <a href="portfolio.html" class="nav-link active">作品集</a>
+        <a href="about.html" class="nav-link">關於我們</a>
+        <a href="contact.html" class="nav-link">聯絡我們</a>
+        <button class="btn-nav-start" onclick="openConsultModal()">開始合作</button>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- 主標題區塊 -->
+    <!-- Hero 區塊 -->
     <section class="hero-section">
       <span class="badge-label">作品集</span>
       <h1 class="hero-title">實際成果，有目共睹</h1>
@@ -636,10 +660,10 @@
       </div>
     </section>
 
-    <!-- 專案卡片網格 -->
+    <!-- 6 大專案卡片網格 -->
     <section class="portfolio-grid" id="portfolioGrid">
-      
-      <!-- Card 1: 全通路購物 App -->
+
+      <!-- 卡片 1: 全通路購物 App -->
       <div class="project-card" data-category="mobile">
         <div>
           <div class="card-header">
@@ -681,7 +705,7 @@
         </div>
       </div>
 
-      <!-- Card 2: 智慧工廠管理平台 -->
+      <!-- 卡片 2: 智慧工廠管理平台 -->
       <div class="project-card" data-category="system">
         <div>
           <div class="card-header">
@@ -723,7 +747,7 @@
         </div>
       </div>
 
-      <!-- Card 3: 內部流程自動化 -->
+      <!-- 卡片 3: 內部流程自動化 -->
       <div class="project-card" data-category="transform">
         <div>
           <div class="card-header">
@@ -765,7 +789,7 @@
         </div>
       </div>
 
-      <!-- Card 4: 遠距醫療預約平台 -->
+      <!-- 卡片 4: 遠距醫療預約平台 -->
       <div class="project-card" data-category="mobile">
         <div>
           <div class="card-header">
@@ -807,7 +831,7 @@
         </div>
       </div>
 
-      <!-- Card 5: 倉儲管理系統升級 -->
+      <!-- 卡片 5: 倉儲管理系統升級 -->
       <div class="project-card" data-category="system">
         <div>
           <div class="card-header">
@@ -849,7 +873,7 @@
         </div>
       </div>
 
-      <!-- Card 6: 線上學習管理平台 -->
+      <!-- 卡片 6: 線上學習管理平台 -->
       <div class="project-card" data-category="transform">
         <div>
           <div class="card-header">
@@ -904,8 +928,8 @@
       </div>
       <button class="btn-cta-large" onclick="openConsultModal()">
         開始諮詢
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </button>
     </section>
@@ -916,8 +940,21 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-about">
-          <a href="#" class="brand-logo">
-            <span class="logo-icon">·|·</span> Chrofy
+          <!-- 頁尾 Logo 同步更新 -->
+          <a href="#" class="brand-logo" aria-label="Chrofy 首頁">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="28" y1="28" x2="28" y2="76" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+              <line x1="72" y1="22" x2="72" y2="70" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+              <line x1="22" y1="36" x2="80" y2="36" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+              <line x1="26" y1="68" x2="80" y2="68" stroke="#050b1a" stroke-width="3" stroke-linecap="round"/>
+              <line x1="50" y1="18" x2="50" y2="82" stroke="#050b1a" stroke-width="3"/>
+              <circle cx="50" cy="14" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+              <circle cx="50" cy="86" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+              <line x1="18" y1="52" x2="82" y2="52" stroke="#050b1a" stroke-width="3"/>
+              <circle cx="14" cy="52" r="5" fill="#ffffff" stroke="#050b1a" stroke-width="3"/>
+              <circle cx="50" cy="52" r="5" fill="#050b1a"/>
+            </svg>
+            <span class="logo-text">Chrofy</span>
           </a>
           <p>創新想法，落地實踐。<br>專業 IT 解決方案，提升企業效率。</p>
         </div>
@@ -925,18 +962,20 @@
         <div>
           <h4 class="footer-col-title">服務</h4>
           <ul class="footer-links">
-            <li><a href="#">App 開發</a></li>
-            <li><a href="#">IT 解決方案</a></li>
-            <li><a href="#">企業數位轉型</a></li>
+            <li><a href="#services">App 開發</a></li>
+            <li><a href="#services">IT 解決方案</a></li>
+            <li><a href="#services">企業數位轉型</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">公司</h4>
           <ul class="footer-links">
-            <li><a href="#">關於我們</a></li>
-            <li><a href="#">作品集</a></li>
-            <li><a href="mailto:service@chrofy.com">聯絡我們</a></li>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="services.html">服務</a></li>
+            <li><a href="portfolio.html">作品集</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
           </ul>
         </div>
       </div>
@@ -956,7 +995,7 @@
     <div class="modal-card">
       <button class="modal-close" onclick="closeConsultModal()">✕</button>
       <h3 class="modal-title">與 Chrofy 預約諮詢</h3>
-      <p class="modal-desc">需求將自動寄送至 <strong>service@chrofy.com</strong></p>
+      <p class="modal-desc">需求信件將自動傳送至 <strong>service@chrofy.com</strong></p>
 
       <form id="consultForm" onsubmit="handleFormSubmit(event)">
         <div class="form-group">
@@ -989,16 +1028,14 @@
     <span id="toastText">需求已成功發送至 service@chrofy.com</span>
   </div>
 
-  <!-- 互動邏輯腳本 -->
+  <!-- 互動腳本 -->
   <script>
-    // 分類過濾篩選器
+    // 專案分類過濾
     function filterProjects(category, btnElement) {
-      // 切換按鈕 active 樣式
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
       btnElement.classList.add('active');
 
-      // 篩選卡片
       const cards = document.querySelectorAll('.project-card');
       cards.forEach(card => {
         const cardCat = card.getAttribute('data-category');
@@ -1025,7 +1062,7 @@
       }
     }
 
-    // 表單發送邏輯 (寄件至 service@chrofy.com)
+    // 表單發送邏輯 (發信至 service@chrofy.com)
     function handleFormSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
@@ -1036,14 +1073,11 @@
 
       const name = document.getElementById('senderName').value;
 
-      // 模擬非同步處理
       setTimeout(() => {
         btn.disabled = false;
         btn.textContent = originalText;
         closeConsultModal();
         document.getElementById('consultForm').reset();
-
-        // 彈出 Toast 通知
         showToast(`感謝 ${name}！您的諮詢需求已傳送至 service@chrofy.com`);
       }, 700);
     }
