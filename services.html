@@ -745,7 +745,7 @@
         <a href="portfolio.html" class="nav-link">作品集</a>
         <a href="about.html" class="nav-link">關於我們</a>
         <a href="contact.html" class="nav-link">聯絡我們</a>
-        <button class="btn-nav-start" onclick="openConsultModal()">開始合作</button>
+        
       </nav>
     </div>
   </header>
@@ -1001,10 +1001,8 @@
           <label>專案需求簡述</label>
           <textarea id="senderMsg" rows="3" placeholder="請簡述您的專案需求與時程期望..."></textarea>
         </div>
-
-        <button type="submit" class="btn-submit-modal" id="submitBtn">
-          立即發送需求
-        </button>
+        <button>
+        <a href="contact.html" class="nav-link" onclick="openModal('立即發送需求'); return false;">開始合作</a></button>
       </form>
     </div>
   </div>
