@@ -778,6 +778,18 @@
         <div class="tab-name">企業數位轉型</div>
       </div>
     </section>
+     <!-- 04 雲端課程教學 -->
+          <div class="tab-card" onclick="switchService(3)">
+        <span class="tab-num">04</span>
+        <div class="tab-name">雲端課程教學</div>
+      </div>
+    </section>
+         <!-- 05 額外服務 -->
+          <div class="tab-card" onclick="switchService(4)">
+        <span class="tab-num">05</span>
+        <div class="tab-name">專業線上華語課程</div>
+      </div>
+    </section>
 
     <!-- 服務詳情雙欄區塊 (動態切換) -->
     <section class="service-detail-section" id="serviceDetail">
@@ -1066,8 +1078,37 @@
         industries: ["跨國貿易", "傳統製造", "專業顧問", "連鎖餐飲"],
         statNum: "40%+",
         statLabel: "平均作業效率提升"
-      }
-    ];
+      },
+      {
+        path: "04 / 雲端課程教學",
+        name: "雲端課程教學",
+        headline: "豐富雲端架構，整合企業上雲",
+        desc: "針對全球科技人才、跨國工程師或供應鏈經理的頂級科技實務培訓產品。",
+        features: [
+          "拒絕學院派理論，直接拆解一線大廠的實際工藝",
+          "當週科技財報與技術突破即時解碼",
+          "實踐雲端落地，提供上雲知識點",
+          "點出企業常發生的問題，提供最真實的雲端架構輔導",
+          "自帶專案範本與稽核 Checklists"
+        ],
+        industries: ["雲端架構", "伺服器", "GCP", "科技業"],
+      },
+            {
+        path: "05 / 專業華語線上教學",
+        name: "專業華語線上教學",
+        headline: "國際化教育資源，提供友善自由並結合多元文化的教學環境",
+        desc: "「時事 × 半導體 × 雙語華語」線上學習平台。",
+        features: [
+          "深厚半導體與高科技背景",
+          "動態解碼「半導體與全球科技」",
+          "極致流暢的「英授華語」",
+          "矽谷與科學園區的通訊場景",
+          "工作以及生活應用華語實際演練"
+        ],
+        industries: ["語言", "半導體", "專業顧問", "華語"],
+        statNum: "10+",
+        statLabel: "教學經驗"
+      },;
 
     let currentActiveIndex = 0;
 
