@@ -777,15 +777,14 @@
         <span class="tab-num">03</span>
         <div class="tab-name">企業數位轉型</div>
       </div>
-    </section>
+
      <!-- 04 雲端課程教學 -->
-          <div class="tab-card" onclick="switchService(3)">
+       <div class="tab-card" onclick="switchService(3)">
         <span class="tab-num">04</span>
         <div class="tab-name">雲端課程教學</div>
       </div>
-    </section>
          <!-- 05 額外服務 -->
-          <div class="tab-card" onclick="switchService(4)">
+      <div class="tab-card" onclick="switchService(4)">
         <span class="tab-num">05</span>
         <div class="tab-name">專業線上華語課程</div>
       </div>
@@ -1006,6 +1005,8 @@
             <option value="App 開發">App 開發</option>
             <option value="IT 解決方案">IT 解決方案</option>
             <option value="企業數位轉型">企業數位轉型</option>
+            <option value="雲端課程教學">雲端課程教學</option>
+            <option value="專業華語線上教學">專業華語線上教學</option>
           </select>
         </div>
 
@@ -1013,8 +1014,7 @@
           <label>專案需求簡述</label>
           <textarea id="senderMsg" rows="3" placeholder="請簡述您的專案需求與時程期望..."></textarea>
         </div>
-        <button>
-        <a href="contact.html" class="nav-link" onclick="openModal('立即發送需求'); return false;">開始合作</a></button>
+        <a href="contact.html" class="nav-link" onclick="openModal('立即發送需求'); return false;">開始合作</a>
       </form>
     </div>
   </div>
@@ -1092,6 +1092,8 @@
           "自帶專案範本與稽核 Checklists"
         ],
         industries: ["雲端架構", "伺服器", "GCP", "科技業"],
+        statNum: "500+",          // <-- Add this
+        statLabel: "培育學員"
       },
       {
         path: "05 / 專業華語線上教學",
@@ -1108,7 +1110,8 @@
         industries: ["語言", "半導體", "專業顧問", "華語"],
         statNum: "10+",
         statLabel: "教學經驗"
-      };
+      }
+      ];
 
     let currentActiveIndex = 0;
 
