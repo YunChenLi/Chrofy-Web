@@ -166,7 +166,7 @@
       line-height: 1.75;
     }
 
-    /* 3 欄服務選單 Tab */
+    /* 5 欄服務選單 Tab */
     .service-tabs-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -681,7 +681,7 @@
         grid-template-columns: 1fr;
       }
       .workflow-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
       .cta-banner {
         flex-direction: column;
@@ -760,7 +760,7 @@
       </p>
     </section>
 
-    <!-- 服務選單 3 欄 Tabs -->
+    <!-- 服務選單 5 欄 Tabs -->
     <section class="service-tabs-grid">
       <!-- 01 App 開發 -->
       <div class="tab-card active" onclick="switchService(0)">
@@ -1029,7 +1029,7 @@
 
   <!-- 互動控制邏輯 -->
   <script>
-    // 3 項服務數據庫
+    // 5 項服務數據庫
     const servicesData = [
       {
         path: "01 / App 開發",
@@ -1093,7 +1093,7 @@
         ],
         industries: ["雲端架構", "伺服器", "GCP", "科技業"],
       },
-            {
+      {
         path: "05 / 專業華語線上教學",
         name: "專業華語線上教學",
         headline: "國際化教育資源，提供友善自由並結合多元文化的教學環境",
